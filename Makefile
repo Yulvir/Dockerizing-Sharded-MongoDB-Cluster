@@ -17,3 +17,7 @@ up: ## Build the container
 
 down:
 	sudo docker-compose down  --remove-orphans
+
+# TODO: Add authentication
+# TODO: How manage logs of each container ??
+# TODO: Deploy in EC2 t2.micro AWS Cluster
