@@ -1,3 +1,6 @@
+
+# TODO: Uses best names to containers, services and all stuffs
+
 version: "2"
 services:
 
