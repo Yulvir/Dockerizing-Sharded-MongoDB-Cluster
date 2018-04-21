@@ -8,7 +8,7 @@ services:
   mongod_conf1_service:
     container_name: mongod_conf1_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017 --dbpath /data/db
     environment:
       TERM: xterm
     expose:
@@ -21,7 +21,7 @@ services:
   mongod_conf2_service:
     container_name: mongod_conf2_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017 --dbpath /data/db
     environment:
       TERM: xterm
     expose:
@@ -34,7 +34,7 @@ services:
   mongod_conf3_service:
     container_name: mongod_conf3_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --configsvr --replSet mongod_conf_cluster --port 27017 --dbpath /data/db
     environment:
       TERM: xterm
     expose:
@@ -48,10 +48,10 @@ services:
   # CREATE SHARD REPLICA SET WITH THREE MONGOD INSTANCES
   # EXPOSE PORT USE BY DEFAULT BY --shardsvr
 
-  mongod_shard1_service:
-    container_name: mongod_shard1_container
+  mongod_db1_service:
+    container_name: mongod_db1_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017 --dbpath /data/db
     ports:
       - 27017:27017
     expose:
@@ -63,10 +63,10 @@ services:
       - /mongo_cluster/data1:/data/db
       - ./Auth_folder:/home
 
-  mongod_shard2_service:
-    container_name: mongod_shard2_container
+  mongod_db2_service:
+    container_name: mongod_db2_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017 --dbpath /data/db
     ports:
       - 27027:27017
     expose:
@@ -78,10 +78,10 @@ services:
       - /mongo_cluster/data2:/data/db
       - ./Auth_folder:/home
 
-  mongod_shard3_service:
-    container_name: mongod_shard3_container
+  mongod_db3_service:
+    container_name: mongod_db3_container
     image: mongo:3.6
-    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017
+    command: mongod --keyFile /home/keyfile --shardsvr --replSet mongod_db_cluster --port 27017 --dbpath /data/db
     ports:
       - 27037:27017
     expose:
